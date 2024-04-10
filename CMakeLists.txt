@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.28.1)
 
-project(project4)
+project(final_project)
 
 if (APPLE)
     set (OpenCV_DIR /Users/draculasc2/Documents/libraries/install/lib/cmake/opencv4)
@@ -19,7 +19,9 @@ set (SOURCES
     src/util.cpp
     src/render.cpp
     src/src/glad.c
+    src/labelTool.cpp
+    src/csv_util.cpp
 )
 add_executable(${PROJECT_NAME} ${SOURCES})
-target_include_directories(${PROJECT_NAME} PRIVATE src  C:/mylib/glm)
+target_include_directories(${PROJECT_NAME} PRIVATE src  C:/mylib/glm ${OpenCV_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} ${OPENGL_LIBRARIES} C:/mylib/glfw-build/lib/glfw3.lib)

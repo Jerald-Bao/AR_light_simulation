@@ -17,6 +17,7 @@
 #include <cstdio>
 #include <util.h>
 #include "render.h"
+#include "labelTool.h"
 
 
 /*
@@ -57,6 +58,11 @@ int main(int argc, char *argv[]) {
         cv::Mat cameraMatrix, distCoeffs;
         read_camera(cameraMatrix, distCoeffs);
         renderLoop(img,dst,v,i,normal,rvec,tvec,cameraMatrix, window,shaderProgram);
+        return 0;
+    }
+
+    if (argc >= 2 && strcmp(argv[1], "--label-lighting")==0) {
+        lt::showImages("image_label_data.csv","./Data/images/");
         return 0;
     }
 
