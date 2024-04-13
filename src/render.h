@@ -16,7 +16,8 @@
 the main renderer pipeline of the opengl part
 */
 void renderLoop(cv::Mat &img,cv::Mat& dst, std::vector<cv::Vec3f> v, std::vector<cv::Vec3i> indices,std::vector<cv::Vec3f> normals,
-cv::Mat& rvec, cv::Mat& tvec,cv::Mat& perspective, GLFWwindow* window,GLint shaderProgram);
+//cv::Mat& rvec,
+float rmat[3][3],float tvec[],cv::Mat& perspective, GLFWwindow* window,GLint shaderProgram) ;
 
 /*
 compile and link shaders to the shader program

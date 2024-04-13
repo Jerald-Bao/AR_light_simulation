@@ -266,7 +266,7 @@ std::vector<cv::Vec3f> v, std::vector<cv::Vec3i> indices,std::vector<cv::Vec3f> 
     //rvec.at<double>(2,0) = -rvec.at<double>(2,0);
     std::cout << "rvecs: " << rvec.at<double>(0,0)<<" "<< rvec.at<double>(1,0)<<" "<< rvec.at<double>(2,0)<<" " << std::endl;
     std::cout << "tvecs: " << tvec.at<double>(0,0)<<" "<< tvec.at<double>(1,0)<<" "<< tvec.at<double>(2,0)<<" " << std::endl;
-    renderLoop(img,dst, v,indices,normals,rvec,tvec,cameraMatrix,window,program);
+    //renderLoop(img,dst, v,indices,normals,rvec,tvec,cameraMatrix,window,program);
 }
 
 /*

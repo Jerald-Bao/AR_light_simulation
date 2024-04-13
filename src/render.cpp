@@ -195,7 +195,8 @@ the main renderer pipeline of the opengl part
 */
 
 void renderLoop(cv::Mat &img,cv::Mat& dst, std::vector<cv::Vec3f> v, std::vector<cv::Vec3i> indices,std::vector<cv::Vec3f> normals,
-cv::Mat& rvec, cv::Mat& tvec,cv::Mat& perspective, GLFWwindow* window,GLint shaderProgram) {
+//cv::Mat& rvec,
+float rmat[3][3],float tvec[],cv::Mat& perspective, GLFWwindow* window,GLint shaderProgram) {
     int width = 640;
     int height = 480;
     GLuint VBO, VAO, EBO;
@@ -266,23 +267,23 @@ cv::Mat& rvec, cv::Mat& tvec,cv::Mat& perspective, GLFWwindow* window,GLint shad
     To me in the future: DON'T TOUCH ALL THE CODES BELOW. I HAVE NO IDEA WHY THIS WORKS.
 */
 
-    glm::vec4 cameraPos = glm::vec4((float)tvec.at<double>(0,0), (float)tvec.at<double>(1,0),(float)tvec.at<double>(2,0),0); // Camera position
+    //glm::vec4 cameraPos = glm::vec4((float)tvec.at<double>(0,0), (float)tvec.at<double>(1,0),(float)tvec.at<double>(2,0),0); // Camera position
+    glm::vec4 cameraPos = glm::vec4(tvec[0], tvec[1],tvec[2],0); // Camera position
 
-    glm::mat4 viewMatrix = glm::mat4(1.0f);
-    cv::Mat R;
-    cv::Rodrigues(rvec, R);
+    // glm::mat4 viewMatrix = glm::mat4(1.0f);
+    // cv::Mat R;
+    // cv::Rodrigues(rvec, R);
 
     // Convert to a 4x4 transformation matrix
-    cv::Mat T(4, 4, R.type(), cv::Scalar(0));
-    R.copyTo(T(cv::Rect(0, 0, 3, 3)));
-    // for (int i = 0; i < 3; ++i) {
-    //     T.at<double>(i, 3) = tvec.at<double>(i,0);
-    // }
-    T.at<double>(3, 3) = 1.0;
+    // cv::Mat T(4, 4, R.type(), cv::Scalar(0));
+    // R.copyTo(T(cv::Rect(0, 0, 3, 3)));
+    // T.at<double>(3, 3) = 1.0;
 
 
 
-    glm::mat4 testMatrix = glm::make_mat4(T.ptr<double>());
+    //glm::mat4 testMatrix = glm::make_mat4(T.ptr<double>());
+    glm::mat3 rMat3x3(rmat[0][0],rmat[0][1],rmat[0][2],rmat[1][0],rmat[1][1],rmat[1][2],rmat[2][0],rmat[2][1],rmat[2][2]);
+    glm::mat4 testMatrix= glm::mat4(rMat3x3);
     glm::quat objRotationQua= glm::quat_cast(testMatrix);
     glm::vec3 objRotationEuler = glm::eulerAngles(objRotationQua); 
     std::cout<<"obj Rotation:" << objRotationEuler.x<<" "<<objRotationEuler.y<<" "<<objRotationEuler.z<<std::endl;
