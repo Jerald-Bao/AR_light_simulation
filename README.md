@@ -1,5 +1,5 @@
 # AR_light_estimation
-An AR application that mimics the lighting environment of the video using a convolution neural network.
+an Augmented Reality (AR) application designed to replicate the real-world lighting environment captured in video, enhancing realism by using deep learning and computer graphics techniques.
 
 ## Markless pattern detector and Pose Calculation System
 The system uses SIFT for the feature detector, as well as feature extraction, and Flann-based matcher for feature matching.
@@ -7,9 +7,8 @@ Acknowledge: [https://github.com/MasteringOpenCV/code/tree/master](https://githu
 
 ## Argumented Reality rendering
 
-The rendering part renders a single-model-single-light-source scene in OpenGL, using glm, glfw and glad libraries.
-After the previous part calculates the pose of the reference pattern, transform it to get the camera's view matrix in OpenGL.
+The rendering component generates a highly realistic AR experience by simulating a single-model, single-light-source scene using OpenGL. The application integrates libraries such as glm for mathematics, glfw for window creation and management, and glad for OpenGL context management. After determining the reference pattern's pose, the system transforms it into the camera's view matrix, allowing seamless interaction between virtual objects and the real-world environment.
 
 ## Light estimation
 
-the video frames are analyzed by a pre-trained CNN model and output one of eight light source directions in the image perspective. The training part is written in Python.
+The application enhances AR realism by analyzing video frames through a pre-trained CNN, which estimates one of eight possible light source directions relative to the camera's perspective. This real-time light direction estimation significantly improves the lighting consistency between the AR objects and their real-world surroundings. The light estimation model was trained using Python and integrates efficiently with the rendering pipeline.
